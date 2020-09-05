@@ -6,12 +6,14 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 require('dotenv').config();
 
+// hiding database information
 const environment = process.env;
 const MONGO_PASSWORD = environment.MONGO_PASSWORD;
 const MONGO_USER = environment.MONGO_USER;
 
 const MONGODB_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@vaccinedb.fplt4.mongodb.net/<dbname>?retryWrites=true&w=majority`; 
 
+// connecting the database
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/Vaccine_Database', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -21,7 +23,7 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected');
 })
 
-
+// import routes 
 var routes = require('./routes');
 var mongoRoute = require('./routes/mongo');
 
@@ -38,6 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// create middlewares
 app.use('/', routes);
 app.use('/mongo', mongoRoute);
 
@@ -58,3 +61,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
