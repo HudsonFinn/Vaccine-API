@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+
+// const bodyParser = require('body-parser');
+// comst cors = require('cors');
+
 require('dotenv').config();
 
 // hiding database information
@@ -36,13 +40,16 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // create middlewares
 app.use('/', routes);
 app.use('/mongo', mongoRoute);
+
+// app.use(bodyParser.json());
+// app.use(cors);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

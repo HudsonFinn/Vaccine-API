@@ -1,8 +1,9 @@
 // importing mongoose package
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Schema represents the post(data) looks (title, description etc.)
-const PostSchema = mongoose.Schema({
+const ItemSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -17,4 +18,5 @@ const PostSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Posts', PostSchema)
+// model and the schema it will use
+module.exports = mongoose.model('Items', ItemSchema) 
