@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+const rateLimit = require("express-rate-limit");
 
 // const bodyParser = require('body-parser');
 // comst cors = require('cors');
@@ -28,11 +29,19 @@ mongoose.connection.on('connected', () => {
 })
 
 // import routes 
-var routes = require('./routes');
+var index = require('./routes/index');
+var api = require('./routes/api');
 var mongoRoute = require('./routes/mongo');
 
-
 var app = express();
+
+// limit to the number of api calls you can make
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // Max number of requestions in windowMS
+});;
+
+app.use("/api/", apiLimiter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,7 +54,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // create middlewares
-app.use('/', routes);
+app.use('/', index)
+app.use('/api', api);
 app.use('/mongo', mongoRoute);
 
 // app.use(bodyParser.json());
