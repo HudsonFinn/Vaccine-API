@@ -18,7 +18,7 @@ mongoose.connect(MONGODB_URI || 'mongodb://localhost/Vaccine_Database', {
 });
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose is connectd');
+  console.log('Mongoose is connected');
 })
 
 
