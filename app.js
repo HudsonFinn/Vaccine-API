@@ -3,6 +3,24 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+require('dotenv').config();
+
+const environment = process.env;
+const MONGO_PASSWORD = environment.MONGO_PASSWORD;
+const MONGO_USER = environment.MONGO_USER;
+
+const MONGODB_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@vaccinedb.fplt4.mongodb.net/<dbname>?retryWrites=true&w=majority`; 
+
+mongoose.connect(MONGODB_URI || 'mongodb://localhost/Vaccine_Database', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose is connected');
+})
+
 
 var indexRouter = require('./routes/index');
 
