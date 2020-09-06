@@ -37,9 +37,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', homeRoute);
 app.use('/country', countryRoute);
 app.use('/vaccine', vaccineRoute);
+
+app.use(express.static(path.join(__dirname, 'frontend/build')));;
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/frontend/build/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
