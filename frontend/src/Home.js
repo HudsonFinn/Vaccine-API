@@ -8,21 +8,17 @@ class Landing extends Component{
             selectedCountry: 'AFG',
             name: 'o',
             countryDescription: {
-                required: [
-                {
+                required: {
                 1: "Tetanus"
-                }
-                ],
-                recommended: [
-                {
+                },
+                recommended: {
                 1: "Hepatitis A",
                 2: "Hepatitis B",
                 3: "Rabies",
                 4: "Typhoid",
                 5: "Yellow Fever"
-                }
-                ],
-                certificatesNeeded: [ ],
+                },
+                certificatesNeeded: {},
                 _id: "5f54428d15159c69c82545fe",
                 code: "ARG",
                 name: "Argentina",
@@ -55,6 +51,13 @@ class Landing extends Component{
         this.setState({name: event.target.value});
       }
     render(){
+        console.log(this.state.countryDescription.recommended["1"]);
+        const rec = this.state.countryDescription.recommended.map((item, index) =>{
+
+            return <li key='index'>{item['index']}</li>
+        }
+        
+    );
         return(
             <div >
                 <h1>
@@ -72,7 +75,16 @@ class Landing extends Component{
                     {this.state.selectedCountry}
                 </p>
                 <p>
-                    {this.state.countryDescription.name}
+                    name: <br />
+                    {this.state.countryDescription.name} <br /><br />
+                    recommendations:<br />
+                    
+                        {rec}
+                        <br />
+                    requirements:<br />
+                    {this.state.countryDescription.required[0][1]}<br /><br />
+                    advice:<br />
+                    { this.state.countryDescription.travelAdvice}<br />
                 </p>
             </div>
         )
