@@ -22,7 +22,7 @@ mongoose.connection.on('connected', () => {
 })
 
 
-var routes = require('./routes');
+var homeRoute = require('./routes/index');
 var apiRoute = require('./routes/api');
 
 
@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', homeRoute);
 app.use('/api', apiRoute);
 
 // catch 404 and forward to error handler
