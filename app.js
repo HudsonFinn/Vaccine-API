@@ -23,7 +23,7 @@ mongoose.connection.on('connected', () => {
 
 var vaccineRoute = require('./routes/vaccine');
 var homeRoute = require('./routes/index');
-var apiRoute = require('./routes/api');
+var countryRoute = require('./routes/country');
 
 var app = express();
 
@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRoute);
-app.use('/api', apiRoute);
+app.use('/country', countryRoute);
 app.use('/vaccine', vaccineRoute);
 
 // catch 404 and forward to error handler
