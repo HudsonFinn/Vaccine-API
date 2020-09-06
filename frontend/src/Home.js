@@ -42,6 +42,9 @@ class Landing extends Component{
 
     mySubmitHandler = (event) => {
         event.preventDefault();
+        this.setState({
+            selectedCountry: this.state.name
+        })
         fetch(`/country/${this.state.selectedCountry}`)
         .then(response => response.json())
         .then(data => 
@@ -49,12 +52,12 @@ class Landing extends Component{
                 countryDescription: data
             }));
 
-        this.setState({
-            selectedCountry: this.state.name
-        })
       }
       mySubmitHandlerVacc = (event) => {
         event.preventDefault();
+        this.setState({
+            selectedVacc: this.state.vacc
+        })
         fetch(`/vaccine/${this.state.selectedVacc}`)
         .then(response => response.json())
         .then(data => 
@@ -62,16 +65,19 @@ class Landing extends Component{
                 vaccDesc: data
             }));
 
-        this.setState({
-            selectedVacc: this.state.vacc
-        })
       }
     myChangeHandler = (event) => {
-        this.setState({name: event.target.value});
+        this.setState({
+            name: event.target.value,
+            selectedCountry: event.target.value,
+        });
       }
 
       myChangeHandlerVacc = (event) => {
-        this.setState({vacc: event.target.value});
+        this.setState({
+            vacc: event.target.value,
+            selectedVacc: event.target.value,
+        });
       }
     render(){
         return(
