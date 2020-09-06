@@ -38,14 +38,7 @@ class Landing extends Component{
         };
       }
 
-    componentDidMount(){
-        fetch('/country/AFG')
-        .then(response => response.json())
-        .then(data => 
-            this.setState({
-                countryDescription: data
-            }));
-    }
+
 
     mySubmitHandler = (event) => {
         event.preventDefault();
@@ -62,7 +55,7 @@ class Landing extends Component{
       }
       mySubmitHandlerVacc = (event) => {
         event.preventDefault();
-        fetch(`/vaccine/${this.state.vacc}`)
+        fetch(`/vaccine/${this.state.selectedVacc}`)
         .then(response => response.json())
         .then(data => 
             this.setState({
