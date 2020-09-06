@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 // Schema represents the post(data) looks (title, description etc.)
 const VaccineSchema = new Schema({
-    title: {
+    name: {
         type: String,
         required: true
     },

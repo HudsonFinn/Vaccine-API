@@ -19,7 +19,7 @@ router.get('/', async function(req, res, next) {
 // SUBMITS A VACCINE
 router.post('/', async function(req, res, next) {
   const vaccine = new Vaccine({
-    title: req.body.title,
+    name: req.body.name,
     description: req.body.description,
     sideEffects: req.body.sideEffects,
     duration: req.body.duration,
@@ -37,9 +37,12 @@ router.post('/', async function(req, res, next) {
 });
 
 // GETS A SPECIFIC VACCINE 
-router.get('/:vaccineId', async (req, res) => {
+router.get('/:vaccineName', async (req, res) => {
   try{
-    const vaccine = await Vaccine.findById(req.params.vaccineId);
+    const vaccine = await Vaccine.findOne({ 'name': req.params.vaccineName});
+  if(vaccine == null){
+    res.json({error: "No vaccine found with the name: " + req.params.vaccineName});
+  }
   res.json(vaccine); 
   }catch(err) {
     res.json({ message: err });
