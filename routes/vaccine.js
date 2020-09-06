@@ -24,7 +24,7 @@ router.post('/', async function(req, res, next) {
     sideEffects: req.body.sideEffects,
     duration: req.body.duration,
     administration: req.body.administration,
-    whenNeeded: req.body.whenNeeded,
+    underAge: req.body.underAge,
     medicalConsiderations: req.body.medicalConsiderations
   });
 
@@ -39,7 +39,7 @@ router.post('/', async function(req, res, next) {
 // GETS A SPECIFIC VACCINE 
 router.get('/:vaccineId', async (req, res) => {
   try{
-  const vaccine = await Vaccine.findById(req.params.vaccineId);
+    const vaccine = await Vaccine.findById(req.params.vaccineId);
   res.json(vaccine); 
   }catch(err) {
     res.json({ message: err });
@@ -61,7 +61,14 @@ router.patch('/:vaccineId', async (req, res) => {
   try{
     const updatedVaccine = await Vaccine.updateOne(
       { _id: req.params.vaccineId },
-      { $set: {description: req.body.description}
+      { $set: {
+        description: req.body.description,
+        sideEffects: req.body.sideEffects,
+        duration: req.body.duration,
+        administration: req.body.administration,
+        underAge: req.body.underAge,
+        medicalConsiderations: req.body.medicalConsiderations
+      }
     });
     res.json(updatedVaccine);
   }catch(err) {

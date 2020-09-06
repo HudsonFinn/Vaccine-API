@@ -16,17 +16,17 @@ const VaccineSchema = new Schema({
         type: String,
         required: true
     },
-    duration: {
+    duration: { // how long it last for
         type: String,
         required: true
     },
-    administration: {
+    administration: { // how should it be given
         type: String,
         required: true
     },
-    whenNeeded: {
-        type: String,
-        required: true
+    underAge: {
+        type: Boolean,
+        required: false
     },
     medicalConsiderations: {
         type: String,
