@@ -14,15 +14,15 @@ const CountrySchema = new Schema({
         required: true
     },
     required: {
-        type: Array,
+        type: Object,
         required: true
     },
     recommended: {
-        type: Array,
+        type: Object,
         required: true
     },
     certificatesNeeded: {
-        type: Array,
+        type: Object,
         required:true
     },
     travelAdvice: {

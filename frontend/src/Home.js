@@ -136,12 +136,12 @@ class Landing extends Component{
                         
                         <br /><br />
                     sideEffects:<br />
-                    {this.state.vaccDesc.sideEffects} <br /><br />
+                    <a href={this.state.vaccDesc.sideEffects}>{this.state.vaccDesc.sideEffects}</a> <br /><br />
                     <br /><br />
                     duration:<br />
                     {this.state.vaccDesc.duration} <br /><br />
                     medical considerations:<br />
-                    {this.state.vaccDesc.medicalConsiderations} <br /><br /> 
+                    <a href={this.state.vaccDesc.medicalConsiderations}>{this.state.vaccDesc.medicalConsiderations}</a> <br /><br /> 
                     administration:<br />
                     {this.state.vaccDesc.administration} <br /><br />
                 </p>
