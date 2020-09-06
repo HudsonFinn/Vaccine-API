@@ -21,10 +21,9 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected');
 })
 
-
+var vaccineRoute = require('./routes/vaccine');
 var homeRoute = require('./routes/index');
 var apiRoute = require('./routes/api');
-
 
 var app = express();
 
@@ -40,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRoute);
 app.use('/api', apiRoute);
+app.use('/vaccine', vaccineRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,6 +56,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;
