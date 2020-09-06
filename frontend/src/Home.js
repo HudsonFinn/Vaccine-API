@@ -51,13 +51,6 @@ class Landing extends Component{
         this.setState({name: event.target.value});
       }
     render(){
-        console.log(this.state.countryDescription.recommended["1"]);
-        const rec = this.state.countryDescription.recommended.map((item, index) =>{
-
-            return <li key='index'>{item['index']}</li>
-        }
-        
-    );
         return(
             <div >
                 <h1>
@@ -78,12 +71,21 @@ class Landing extends Component{
                     name: <br />
                     {this.state.countryDescription.name} <br /><br />
                     recommendations:<br />
-                    
-                        {rec}
-                        <br />
+                    {
+                        Object.values(this.state.countryDescription.recommended).map((el, i)=>{
+                            return <li key={i}>{el}</li>
+                        })
+                    }
+                        
+                        <br /><br />
                     requirements:<br />
-                    {this.state.countryDescription.required[0][1]}<br /><br />
-                    advice:<br />
+                    {
+                        Object.values(this.state.countryDescription.required).map((el, i)=>{
+                            return <li  key={i}>{el}</li>
+                        })
+                    }
+                    <br /><br />
+                    Advice:<br />
                     { this.state.countryDescription.travelAdvice}<br />
                 </p>
             </div>
