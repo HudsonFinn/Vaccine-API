@@ -39,7 +39,7 @@ class Landing extends Component{
 
     mySubmitHandler = (event) => {
         event.preventDefault();
-        fetch(`/country/${selectedCountry}`)
+        fetch(`/country/${this.state.selectedCountry}`)
         .then(response => response.json())
         .then(data => 
             this.setState({
